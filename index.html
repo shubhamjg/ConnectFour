@@ -7,97 +7,99 @@
     <link rel="stylesheet" href="board.css" />
   </head>
   <body>
-    <h3>Connect Four Game</h3>
-    <p>
-      Connect Four is a game where players take turn dropping colored 
-      circles in the top of the board, along different rows.  
-      The goal is to make a row of 4 circles in a row - straight or diagnal.
-    </p>
+    <div id="wrapper">
+      <h3>Connect Four Game</h3>
+      <p class="game_description">
+        Connect Four is a game where players take turn dropping colored <br/>
+        circles in the top of the board, along different rows.  <br/>
+        The goal is to make a row of 4 circles in a row - straight or diagnal.
+      </p>
 
-    <div id="gameboard">
-      <!-- 
-        The game table is the actual board.  A table seems the most logical 
-        structure for the data, as tables have rows and columns although you 
-        most certainly could use divs, or other HTML elements.  The top row 
-        (and tablehead - 'thead') is reserved for the buttons to drop the 
-        game pieces. 
-      -->
+      <div id="gameboard">
+        <!-- 
+          The game table is the actual board.  A table seems the most logical 
+          structure for the data, as tables have rows and columns although you 
+          most certainly could use divs, or other HTML elements.  The top row 
+          (and tablehead - 'thead') is reserved for the buttons to drop the 
+          game pieces. 
+        -->
 
-      <table id="game_table">
-        <thead>
-          <tr>
-            <!-- 
-              Set up the buttons that will drop the pieces in to the column.  
-              This could be programmatically generated like the rows/columns 
-              below, but since it was just 7, it wouldn't really save code 
-            -->
-            
-            <td><button>Drop</button></td>
-            <td><button>Drop</button></td>
-            <td><button>Drop</button></td>
-            <td><button>Drop</button></td>
-            <td><button>Drop</button></td>
-            <td><button>Drop</button></td>
-            <td><button>Drop</button></td>
-          </tr>
-        </thead>
+        <table id="game_table">
+          <thead>
+            <tr>
+              <!-- 
+                Set up the buttons that will drop the pieces in to the column.  
+                This could be programmatically generated like the rows/columns 
+                below, but since it was just 7, it wouldn't really save code 
+              -->
+              
+              <td><button>Drop</button></td>
+              <td><button>Drop</button></td>
+              <td><button>Drop</button></td>
+              <td><button>Drop</button></td>
+              <td><button>Drop</button></td>
+              <td><button>Drop</button></td>
+              <td><button>Drop</button></td>
+            </tr>
+          </thead>
 
-        <script>
-          /**
-            To make the code much more compact, javascript will actually be used 
-            to write the code for the game board a for loop is a basic concept for 
-            running a set of code multiple times.  It has 3 parameters, the first 
-            is a variable name, in this case I used "row" and "col" I then set the 
-            value to 0.  The next parameter is 'under what conditions should 
-            i repeat the code below. As long as that 2nd condition is "true" 
-            the code below will run. The last parameter is the increment.  
-            This is run every time the code below is run.  In the loops below, 
-            I have i++ and j++ which means "add one to the value of row/col" 
-          */
-
-          for (var row = 0; row <= 5; row++) {
-            /*
-              document.writeln() function will write HTML code to the browser.  
-              If you "inspect" this page after the browser has rendered the 
-              page, you will see a bunch of HTML write the start of the table row tag
-					  */
-
-            document.writeln("<tr>");
-
-            for (var col = 0; col <= 6; col++) {
-              /**
-                write each table data element - with the row and col variables in the 
-                ID so it can be accessed later.
-              */
-              document.writeln(
-                "<td id='square_" + row + "_" + col + "' class='board_square'></td>"
-              );
-            }
-
-            // write the closing table row tag.
-            document.writeln("</tr>");
-          }
-        </script>
-      </table>
-    </div>
-
-    <script>
-      /* This function will draw the board programmatically, it will update each item to make sure it is the appropriate value */
-      function drawBoard() {
-        for (col = 0; col <= 6; col++) {
-          for (row = 0; fow <= 5; row++) {
+          <script>
             /**
-              Set the inner HTML of the square (a td) to be a span with a class of 'piece'
-              and 'player' + the value of that gameboard piece. Using CSS, you can style
-              player0, player1 and player2 so that the square will appear correctly.
+              To make the code much more compact, javascript will actually be used 
+              to write the code for the game board a for loop is a basic concept for 
+              running a set of code multiple times.  It has 3 parameters, the first 
+              is a variable name, in this case I used "row" and "col" I then set the 
+              value to 0.  The next parameter is 'under what conditions should 
+              i repeat the code below. As long as that 2nd condition is "true" 
+              the code below will run. The last parameter is the increment.  
+              This is run every time the code below is run.  In the loops below, 
+              I have i++ and j++ which means "add one to the value of row/col" 
             */
 
-            document.getElementById(
-              'square_' + row + '_' + col
-            ).innerHTML = "<span class='piece player" + gameboard[row][col] + "'></span>";
+            for (var row = 0; row <= 5; row++) {
+              /*
+                document.writeln() function will write HTML code to the browser.  
+                If you "inspect" this page after the browser has rendered the 
+                page, you will see a bunch of HTML write the start of the table row tag
+              */
+
+              document.writeln("<tr>");
+
+              for (var col = 0; col <= 6; col++) {
+                /**
+                  write each table data element - with the row and col variables in the 
+                  ID so it can be accessed later.
+                */
+                document.writeln(
+                  "<td id='square_" + row + "_" + col + "' class='board_square'></td>"
+                );
+              }
+
+              // write the closing table row tag.
+              document.writeln("</tr>");
+            }
+          </script>
+        </table>
+      </div>
+
+      <script>
+        /* This function will draw the board programmatically, it will update each item to make sure it is the appropriate value */
+        function drawBoard() {
+          for (col = 0; col <= 6; col++) {
+            for (row = 0; fow <= 5; row++) {
+              /**
+                Set the inner HTML of the square (a td) to be a span with a class of 'piece'
+                and 'player' + the value of that gameboard piece. Using CSS, you can style
+                player0, player1 and player2 so that the square will appear correctly.
+              */
+
+              document.getElementById(
+                'square_' + row + '_' + col
+              ).innerHTML = "<span class='piece player" + gameboard[row][col] + "'></span>";
+            }
           }
         }
-      }
-    </script>
+      </script>
+    </div>
   </body>
 </html>

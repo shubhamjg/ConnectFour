@@ -1,3 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.game_description {
+  text-align: center;
+  font-size: 20px;
+}
+
 /* Make each piece square - 32x32, set the border-radius to
   16px (so that it appears round) and center it using margin-left
   and margin-right: auto *
