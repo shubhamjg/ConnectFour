@@ -17,9 +17,8 @@
 
       <div id="gameboard">
         <!-- 
-          The game table is the actual board.  A table seems the most logical 
-          structure for the data, as tables have rows and columns although you 
-          most certainly could use divs, or other HTML elements.  The top row 
+          The game table is the actual board.  A table has rows and columns 
+          Divs or other HTML elements could be used too. The top row 
           (and tablehead - 'thead') is reserved for the buttons to drop the 
           game pieces. 
         -->
@@ -30,30 +29,24 @@
               <!-- 
                 Set up the buttons that will drop the pieces in to the column.  
                 This could be programmatically generated like the rows/columns 
-                below, but since it was just 7, it wouldn't really save code 
+                below, but since it was just 7, it wouldn't really save code. 
               -->
               
               <td><button onclick="drop(0);">Drop</button></td>
-              <td><button onclick="drop(1)">Drop</button></td>
-              <td><button onclick="drop(2)">Drop</button></td>
-              <td><button onclick="drop(3)">Drop</button></td>
-              <td><button onclick="drop(4)">Drop</button></td>
-              <td><button onclick="drop(5)">Drop</button></td>
-              <td><button onclick="drop(6)">Drop</button></td>
+              <td><button onclick="drop(1);">Drop</button></td>
+              <td><button onclick="drop(2);">Drop</button></td>
+              <td><button onclick="drop(3);">Drop</button></td>
+              <td><button onclick="drop(4);">Drop</button></td>
+              <td><button onclick="drop(5);">Drop</button></td>
+              <td><button onclick="drop(6);">Drop</button></td>
             </tr>
           </thead>
 
           <script>
             /**
               To make the code much more compact, javascript will actually be used 
-              to write the code for the game board a for loop is a basic concept for 
-              running a set of code multiple times.  It has 3 parameters, the first 
-              is a variable name, in this case I used "row" and "col" I then set the 
-              value to 0.  The next parameter is 'under what conditions should 
-              i repeat the code below. As long as that 2nd condition is "true" 
-              the code below will run. The last parameter is the increment.  
-              This is run every time the code below is run.  In the loops below, 
-              I have i++ and j++ which means "add one to the value of row/col" 
+              to write the code for the game board. I used "row" and "col" I then set the 
+              value to 0. 
             */
 
             for (var row = 0; row <= 5; row++) {
@@ -70,6 +63,7 @@
                   write each table data element - with the row and col variables in the 
                   ID so it can be accessed later.
                 */
+
                 document.writeln(
                   "<td id='square_" + row + "_" + col + "' class='board_square'></td>"
                 );
@@ -108,7 +102,6 @@
           
           drawBoard(); // call the function to draw the board.				
           activePlayer = 1; //set the first player as their turn
-          // setUpTurn(); //get ready for the player's turn
 			  }
 
         /* 
@@ -116,6 +109,7 @@
           it will update each item to make sure it is the 
           appropriate value 
         */
+
         function drawBoard() {
           for (col = 0; col <= 6; col++) {
             for (row = 0; row <= 5; row++) {
@@ -143,6 +137,7 @@
             we search for the lowest point in this row that is available
             we're going to start from the bottom looking for an open slot
           */
+          
           for (row = 5; row>=0; row--) {
             if (gameBoard[row][col] == 0) {
               // set the empty row to the active player's number
