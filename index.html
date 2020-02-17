@@ -6,7 +6,7 @@
     <title>Connect Four Game</title>
     <link rel="stylesheet" href="board.css" />
   </head>
-  <body>
+  <body onload="beginGame();">
     <div id="wrapper">
       <h3>Connect Four Game</h3>
       <p class="game_description">
@@ -33,13 +33,13 @@
                 below, but since it was just 7, it wouldn't really save code 
               -->
               
-              <td><button>Drop</button></td>
-              <td><button>Drop</button></td>
-              <td><button>Drop</button></td>
-              <td><button>Drop</button></td>
-              <td><button>Drop</button></td>
-              <td><button>Drop</button></td>
-              <td><button>Drop</button></td>
+              <td><button onclick="drop(0);">Drop</button></td>
+              <td><button onclick="drop(1)">Drop</button></td>
+              <td><button onclick="drop(2)">Drop</button></td>
+              <td><button onclick="drop(3)">Drop</button></td>
+              <td><button onclick="drop(4)">Drop</button></td>
+              <td><button onclick="drop(5)">Drop</button></td>
+              <td><button onclick="drop(6)">Drop</button></td>
             </tr>
           </thead>
 
@@ -83,10 +83,42 @@
       </div>
 
       <script>
-        /* This function will draw the board programmatically, it will update each item to make sure it is the appropriate value */
+        let gameBoard = [];
+        let isGameActive = false;
+        let activePlayer = 0;
+
+        let playerColor = []
+        playerColor[1] = "purple";
+        playerColor[2] = "yellow"
+
+        function beginGame() {
+          if (isGameActive == true) {
+            return false;
+          }
+
+          isGameActive = true;
+				
+          for (row = 0; row <= 5; row++) {
+            gameBoard[row] = [];
+
+            for (col = 0; col <= 6; col++) {
+              gameBoard[row][col] = 0;
+            }	
+          }		
+          
+          drawBoard(); // call the function to draw the board.				
+          activePlayer = 1; //set the first player as their turn
+          // setUpTurn(); //get ready for the player's turn
+			  }
+
+        /* 
+          This function will draw the board programmatically, 
+          it will update each item to make sure it is the 
+          appropriate value 
+        */
         function drawBoard() {
           for (col = 0; col <= 6; col++) {
-            for (row = 0; fow <= 5; row++) {
+            for (row = 0; row <= 5; row++) {
               /**
                 Set the inner HTML of the square (a td) to be a span with a class of 'piece'
                 and 'player' + the value of that gameboard piece. Using CSS, you can style
@@ -95,7 +127,34 @@
 
               document.getElementById(
                 'square_' + row + '_' + col
-              ).innerHTML = "<span class='piece player" + gameboard[row][col] + "'></span>";
+              ).innerHTML = "<span class='piece player" + gameBoard[row][col] + "'></span>";
+            }
+          }
+        }
+
+        /* 
+          this function implements the drop function.
+          a piece is dropped to the lowest available
+          column.
+        */
+
+        function drop(col) {
+          /* 
+            we search for the lowest point in this row that is available
+            we're going to start from the bottom looking for an open slot
+          */
+          for (row = 5; row>=0; row--) {
+            if (gameBoard[row][col] == 0) {
+              // set the empty row to the active player's number
+              gameBoard[row][col] = activePlayer;
+
+              // draw board programmatically
+              drawBoard();
+
+              // change player's turn
+              activePlayer = activePlayer == 1 ? 2 : 1 
+              
+              return true;
             }
           }
         }

@@ -26,8 +26,8 @@ body {
   and margin-right: auto *
 */
 .piece {
-  height: 32px;
-  width: 32px;
+  height: 25px;
+  width: 25px;
   display:block;
   border-radius: 16px;
   margin-left: auto;
@@ -41,12 +41,12 @@ body {
 
 /* player 1 will have a red background */
 .player1 {
-  background-color: #FF0000;
+  background-color: purple;
 }
 
 /* player 2 will have a blue background */
 .player2 {
-  background-color: #0000FF;	
+  background-color: yellow;	
 }
 
 /* 
